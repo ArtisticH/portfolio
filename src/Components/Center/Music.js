@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import Imgs from '../../Img/Music';
 import Audios from '../../Audio';
 import classNames from 'classnames/bind';
@@ -69,33 +69,72 @@ const PLAYLIST = [
   },
 ];
 
+const initialState = {
+  INDEX: 0,
+  PLAY: null,
+};
+
+function reducer(state, action) {
+  switch(action.type) {
+    case 'NEXT':
+      return {
+        INDEX: state.INDEX === 7 ? 0 : state.INDEX + 1,
+        PLAY: 'PLAY',
+      }
+    case 'PREV':
+      return {
+        INDEX: state.INDEX === 0 ? 7 : state.INDEX - 1,
+        PLAY: 'PLAY',
+      }
+    case 'PAUSE':
+      return {
+        ...state,
+        PLAY: 'PAUSE',
+      }
+    default:
+      return state;
+  }
+}
 
 const Music = () => {
   const Audio = useRef(null);
+  const PlayImg = useRef(null);
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    if(state.PLAY === 'PLAY') {
+      Audio.current.play();
+    } else if(state.PLAY === 'PAUSE') {
+      Audio.current.pause();
+      PlayImg.current.src = btn.pause;
+    }
+  }, [state]);
+  
   return (
     <div className={cx('music')}>
       <div className={cx('btns')}>
         <div className="btn-red"></div>
       </div>
-      <img className={cx('music-img')} src={PLAYLIST} alt=""/>
+      <img className={cx('music-img')} src={PLAYLIST[state.INDEX].IMG} alt=""/>
       <div className={cx('opers')}>
         <div>
-          <div className={cx('song')}>{PLAYLIST}</div>
-          <div className={cx('singer')}>{PLAYLIST}</div>
+          <div className={cx('song')}>{PLAYLIST[state.INDEX].SONG}</div>
+          <div className={cx('singer')}>{PLAYLIST[state.INDEX].SINGER}</div>
         </div>
-        <div className={cx('oper-btns')} onClick={}>
-          <div className={cx('oper-btn')}>
+        <div className={cx('oper-btns')}>
+          <div className={cx('oper-btn')} onClick={() => {dispatch({type: 'PREV'})}}>
             <img className='basic-img' src={btn.prev} alt=""/>
           </div>
-          <div className={cx('oper-btn')} onClick={}>
-            <img className='basic-img' src={btn.play} alt=""/>
+          <div className={cx('oper-btn')} onClick={() => {dispatch({type: 'PAUSE'})}}>
+            <img className='basic-img' src={btn.play} ref={PlayImg} alt=""/>
           </div>
-          <div className={cx('oper-btn')} onClick={}>
+          <div className={cx('oper-btn')} onClick={() => {dispatch({type: 'NEXT'})}}>
             <img className='basic-img' src={btn.next} alt=""/>
           </div>
         </div>
       </div>  
-      <audio src={} ref={Audio}></audio>
+      <audio src={PLAYLIST[state.INDEX].AUDIO} ref={Audio}></audio>
     </div>
   );
 };

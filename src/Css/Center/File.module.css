@@ -1,0 +1,32 @@
+.file {
+  margin-right: 20px;
+  width: 60px;
+  height: 99px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.icon {
+  width: 55px;
+  border-radius: 5px;
+  padding: 5px 8px;
+  margin: 0 auto;
+  margin-bottom: 2px;
+}
+
+.icon.clicked {
+  background-color: #565453;
+}
+
+.name {
+  font-family: var(--font-korean);
+  text-align: center;
+  font-size: 0.7rem;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 2px;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}

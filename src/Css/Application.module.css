@@ -1,0 +1,55 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 8px;
+  height: 50px;
+  position: relative;
+  cursor: pointer;
+}
+
+.app-box:nth-child(8) {
+  margin-right: 0px;
+}
+
+.icon {
+  width: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.tooltip {
+  position: absolute;
+  left: 50%;
+  top: -45px;
+  transform: translateX(-50%);
+  color: white;
+  font-family: var(--font-inter);
+  background-color: #565453;
+  font-weight: 400;
+  font-size: 0.9rem;
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 7px 12px;
+  white-space: nowrap;
+  visibility: hidden;
+}
+
+.circle {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.app.dblclicked {
+  animation: dblclicked 0.4s linear;
+}
+
+@keyframes dblclicked {
+  0% { transform: translateY(0);}
+  50% { transform: translateY(-30%); }
+  100% { transform: translateY(0);}
+}

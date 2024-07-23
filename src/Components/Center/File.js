@@ -1,13 +1,18 @@
 import React from 'react';
+import fileIcon from '../../Img/file.png'
+import styles from '../../Css/Center/File.module.css';
+import classNames from 'classnames/bind';
 
-const File = () => {
+const cx = classNames.bind(styles);
+
+const File = ({ info }) => {
   return (
-    <div class="file-box" data-click="file" data-dblclick="file" data-href="#">
-    <div class="file-icon">
-      <img class="basic-img" src="https://artistich.github.io/p.intro-vanilla/src/img/folder/file.png" alt="file" />
+    <div className={cx()} href={info.href}>
+      <div className={cx('icon')}>
+        <img className="basic-img" src={fileIcon} alt="file"/>
+      </div>
+      <div className={cx('name')}>{info.title}</div>
     </div>
-    <div class="file-name">Vanilla - Github</div>
-  </div>
   );
 };
 

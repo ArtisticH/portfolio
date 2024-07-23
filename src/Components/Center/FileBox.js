@@ -1,24 +1,25 @@
 import React from 'react';
 import File from './File';
+import styles from '../../Css/Center/FileBox.module.css';
+import classNames from 'classnames/bind';
 
-const FileBox = () => {
+const cx = classNames.bind(styles);
+
+const FileBox = ({ file }) => {
   return (
-    <div class="file" hidden>
-    <div class="file-nav" data-dblclick="green">
-      <div class="file-title">Book Club</div>
-      <div class="file-btns">
-        <div class="btn-red" data-click="red"></div>
-        <div class="btn-yellow" data-click="yellow" data-clicked="false" data-disabled="false"></div>
-        <div class="btn-green" data-click="green" data-clicked="false" data-disabled="false"></div>
+    <div className={cx('file', file.location)}>
+    <div className={cx('nav')}>
+      <div className={cx('title')}>{file.title}</div>
+      <div className={cx('btns')}>
+        <div className="btn-red"></div>
+        <div className="btn-yellow"></div>
+        <div className="btn-green"></div>
       </div>  
     </div>
-    <div class="file-main">
-      <File />
-      <File />
-      <div></div>
-      <File />
-      <File />
-      <File />
+    <div className={cx('main')}>
+      {file.info.map(info => 
+        <File info={info}/>
+      )}
     </div>
   </div>
   );

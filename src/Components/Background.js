@@ -1,6 +1,7 @@
 import React from 'react';
 import backImg  from '../Img/background.png'
 import Center from './Center/Center';
+import Footer from './Footer/Footer';
 
 const Background = () => {
   const style = {
@@ -13,6 +14,7 @@ const Background = () => {
   return (
     <div style={style}>
       <Center />
+      <Footer />
     </div>
   );
 };

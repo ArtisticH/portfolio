@@ -1,37 +1,37 @@
 import React from 'react';
-import '../../Css/Center/Music.css';
-import musicImgs from '../../Img/Music';
+import Imgs from '../../Img/Music';
 import classNames from 'classnames/bind';
-import styles from '../css/Booting.module.css';
+import styles from '../../Css/Center/Music.module.css';
 
 const cx = classNames.bind(styles);
+const { cover, btn } = Imgs;
 
 
 const Music = () => {
   return (
-    <div className="music">
-      <div className="btns">
+    <div className={cx('music')}>
+      <div className={cx('btns')}>
         <div className="btn-red"></div>
       </div>
-      <img className="music-img" src={musicImgs.cover.Cool} alt=""/>
-      <div className="opers">
+      <img className={cx('music-img')} src={cover.Cool} alt=""/>
+      <div className={cx('opers')}>
         <div>
-          <div className="song">Cool</div>
-          <div className="singer">Dua Lipa</div>
+          <div className={cx('song')}>Cool</div>
+          <div className={cx('singer')}>Dua Lipa</div>
         </div>
-        <div className="oper-btns">
-          <div className="oper-btn">
-            <img className='basic-img' src={musicImgs.btn.prev} alt=""/>
+        <div className={cx('oper-btns')}>
+          <div className={cx('oper-btn')}>
+            <img className='basic-img' src={btn.prev} alt=""/>
           </div>
-          <div className="oper-btn">
-            <img className='basic-img' src={musicImgs.btn.play} alt=""/>
+          <div className={cx('oper-btn')}>
+            <img className='basic-img' src={btn.play} alt=""/>
           </div>
-          <div className="oper-btn">
-            <img className='basic-img' src={musicImgs.btn.next} alt=""/>
+          <div className={cx('oper-btn')}>
+            <img className='basic-img' src={btn.next} alt=""/>
           </div>
         </div>
       </div>  
-      <audio id="audio" src=""></audio>
+      <audio src=""></audio>
     </div>
   );
 };

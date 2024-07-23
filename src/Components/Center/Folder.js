@@ -1,14 +1,17 @@
 import React from 'react';
-import '../../Css/Center/Folder.css';
+import styles from '../../Css/Center/Folder.module.css';
 import folder from '../../Img/folder.png'
+import classNames from 'classnames/bind';
 
-const Folder = () => {
+const cx = classNames.bind(styles);
+
+const Folder = ({ title }) => {
   return (
-    <div className="folder">
-    <div className="icon">
-      <img className="basic-img" src={folder} alt="folder" />
+    <div className={cx('folder')}>
+    <div className={cx('icon')}>
+      <img className="basic-img" src={folder} alt="folder"/>
     </div>
-    <div className="name"></div>
+    <div className={cx('name')}>{title}</div>
   </div>
   );
 };

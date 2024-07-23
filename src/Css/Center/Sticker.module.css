@@ -1,0 +1,27 @@
+.sticker {
+  width: 310px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 50px;
+  right: 430px;
+  background-color: #f6eda1;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 7px;
+  background-color: #feea3b;
+  height: 16px;
+}
+
+.main {
+  padding: 10px;
+  height: 190px;
+  overflow-y: scroll;
+  font-family: var(--font-korean);
+  font-size: 0.8rem;
+  letter-spacing: -0.3px;
+  line-height: 1rem;
+}

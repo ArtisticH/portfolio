@@ -11,7 +11,7 @@ import pause from './pause-btn.png';
 import play from './play-btn.png';
 import prev from './prev-btn.png';
 
-const musicImgs = {
+const Imgs = {
   cover: {
     Cool,
     CruelSummer,
@@ -30,4 +30,4 @@ const musicImgs = {
   }
 };
 
-export default musicImgs;
+export default Imgs;

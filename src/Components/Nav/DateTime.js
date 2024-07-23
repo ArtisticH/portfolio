@@ -6,8 +6,8 @@ import { Context } from '../../Context/Context';
 const cx = classNames.bind(styles);
 
 const DateTime = () => {
-  const { actions: { setModal } } = useContext(Context);
-  const onClick = useCallback((e) => {
+  const { actions: { setModal }} = useContext(Context);
+  const ModalChange = useCallback(() => {
     setModal(clicked => !clicked);
   }, []);
 
@@ -36,7 +36,7 @@ const DateTime = () => {
   }, []);
 
   return (
-    <div className={cx('datetime')} onClick={onClick}>
+    <div className={cx('datetime')} onClick={ModalChange}>
       <div>{`${month + 1}월 ${date}일 ${dayNames[day]}`}</div>
       <div className={cx('time')}>{`${ampm} ${formattedHours} : ${formattedMinutes}`}</div>
     </div>

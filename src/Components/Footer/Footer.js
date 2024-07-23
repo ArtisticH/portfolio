@@ -68,7 +68,7 @@ const Footer = () => {
     <div style={style}>
       <div style={innerStyle}>
       {Applications.map(app =>
-      <Application app={app}/>
+      <Application key={app.title} app={app}/>
       )}
       </div>
     </div>

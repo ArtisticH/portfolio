@@ -128,7 +128,7 @@ const Center = () => {
         <Gif key={gif.title} gif={gif}/>
       )} */}
       {/* <Sticker /> */}
-      {/* <Music/> */}
+      <Music/>
     </div>
   );
 };

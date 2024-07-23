@@ -8,12 +8,12 @@ const Main = () => {
   const style = {
     height: '100vh',
   };
-  const { state } = useContext(Context);
+  const { state: { modalClicked } } = useContext(Context);
   return (
     <div style={style}>
       <Nav />
       <Background />
-      { state.modalClicked && <Modal />}
+      { modalClicked && <Modal />}
     </div>
   );
 };

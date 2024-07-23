@@ -7,6 +7,7 @@ const state = {
 
 const actions = {
   setModal: () => {},
+  setMain: () => {},
 };
 
 const Context = createContext({

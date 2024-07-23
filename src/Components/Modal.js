@@ -6,8 +6,8 @@ import { Context } from '../Context/Context';
 const cx = classNames.bind(styles);
 
 const Modal = () => {
-  const { actions: { setModal } } = useContext(Context);
-  const onClick = useCallback((e) => {
+  const { actions: { setModal }} = useContext(Context);
+  const ModalChange = useCallback(() => {
     setModal(clicked => !clicked);
   }, []);
   return (
@@ -16,7 +16,7 @@ const Modal = () => {
       <section className={cx('modal')}>
         <div className={cx('nav')}>
           <div>알림</div>
-          <div className={cx('cancel')} onClick={onClick}>
+          <div className={cx('cancel')} onClick={ModalChange}>
             <div className={cx('left')}></div>
             <div className={cx('right')}></div>  
           </div>

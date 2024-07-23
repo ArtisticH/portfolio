@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext} from 'react';
+import Booting from './Components/Booting';
+import Main from './Components/Main';
+import { Provider, Context } from './Context/Context';
 
 function App() {
+  const { state: { mainVisible } } = useContext(Context);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider>
+      <>
+        { !mainVisible && <Booting/>}
+        { mainVisible && <Main/>}
+      </>
+    </Provider>
   );
 }
 

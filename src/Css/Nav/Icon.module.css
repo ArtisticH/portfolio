@@ -1,0 +1,47 @@
+.elem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.elem.right {
+  margin-right: -6px;
+}
+
+.elem.left {
+  margin-left: -6px;
+}
+
+.icon {
+  display: block;
+  padding: 0 13px;
+  box-sizing: content-box;
+}
+
+.icon.apple {
+  width: 13px;
+}
+
+.icon.play {
+  width: 17px;
+}
+
+.icon.bluetooth {
+  width: 9px;
+}
+
+.icon.battery {
+  width: 23px;
+}
+
+.icon.wifi {
+  width: 17px;
+}
+
+.icon.siri {
+  width: 16px;
+}
+

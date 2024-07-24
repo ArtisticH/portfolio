@@ -11,6 +11,7 @@ const Background = () => {
     backgroundSize: '70vw',
     backgroundPosition: 'center',  
   };
+
   return (
     <div style={style}>
       <Center />

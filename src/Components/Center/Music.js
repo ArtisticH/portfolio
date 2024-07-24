@@ -1,10 +1,17 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import Imgs from '../../Img/Music';
 import Audios from '../../Audio';
 import classNames from 'classnames/bind';
 import styles from '../../Css/Center/Music.module.css';
 import { Context } from '../../Context/Context';
 import { produce } from 'immer';
+import DragDrop from '../../Tools/DragDrop';
 
 /*
 // 기능
@@ -76,79 +83,97 @@ const Music = () => {
   const Audio = useRef(null);
   const PlayImg = useRef(null);
   const PlayBtn = useRef(null);
-  const [visible, setVisible] = useState(false);
-  const [invisible, setInvisible] = useState(false);
-
-  const { state: { music, iconRelated }, actions: { setMusic, setIconRelated } } = useContext(Context);
-
-  useEffect(() => {
-    if(!iconRelated.music.appClosed && iconRelated.music.iconClicked) {
-      setInvisible(() => false);
-    }
-  }, [iconRelated.music])
-
+  const [visible, setVisible] = useState(false); // 호버효과
+  const [invisible, setInvisible] = useState(false); // 창닫기
+  const {
+    state: { music, iconRelated },
+    actions: { setMusic, setIconRelated },
+  } = useContext(Context);
+  // 뮤직 창 닫을때 invisible: true로 창을 닫고,
+  // 함수형 업데이트를 쓰기 때문에 상태가 최신 값이 반영된다.
   const Close = useCallback(() => {
-    setInvisible(() => true);
+    setInvisible(true);
+    // Application에서 사용
+    // appClosed = true되면 서클 사라지고, 더블클릭의 조건이 된다.
+    // 더블클릭시 iconClicked = true를 만들어 애니메이션 활성화시키고
+    // 이걸 계속 반복하기 위해 닫을때 iconClicked = false를 만든다.
     setIconRelated(
-      produce(draft => {
+      produce((draft) => {
+        // 함수형 업데이트 반환
         draft.music.appClosed = true;
         draft.music.iconClicked = false;
       })
-    )
+    );
+    // 노래 재생중이라면 멈춘다. 그리고 다시 앱을 킬때 모달처럼 자동으로 재생시키는 행위를 하지 않는다.
     setMusic(
-      produce(draft => {
+      produce((draft) => {
         draft.play = 'PAUSE';
       })
-    )
+    );
   }, []);
+  // Application에서 더블클릭시 창이 나타나야 한다. 
+  // Application에서 appClosed: false && iconClicked: true로 값을 만들면
+  // 여기서 캐치한다.
+  useEffect(() => {
+    if (!iconRelated.music.appClosed && iconRelated.music.iconClicked) {
+      setInvisible(false);
+    }
+  }, [iconRelated.music]);
+  // 호버 효과, 이 앱에만 한정되기 때문에 컴포넌트 상태 사용
   const Visible = useCallback(() => {
-    setVisible(() => true);
+    setVisible(true); // 보이기
   }, []);
   const Invisible = useCallback(() => {
-    setVisible(() => false);
+    setVisible(false); // 사라지기
   }, []);
-
+  // 재생, 멈춤, 다음노래, 이전 노래, 모달 관련
   const nextMusic = useCallback(() => {
-    setMusic(obj => ({
+    setMusic((obj) => ({
       ...obj,
       index: obj.index === 7 ? 0 : obj.index + 1,
-    }))
+    })); // 인덱스 바꾸기
   }, []);
   const prevMusic = useCallback(() => {
-    setMusic(obj => ({
+    setMusic((obj) => ({
       ...obj,
       index: obj.index === 0 ? 7 : obj.index - 1,
-    }))
+    })); // 인덱스 바꾸기
   }, []);
   const PlayMusic = useCallback(() => {
-    setMusic(obj => ({
+    setMusic((obj) => ({
       ...obj,
       play: 'PLAY',
-    }))
+    })); // 현재 인덱스는 그대로, 노래 재생
   }, []);
   const PauseMusic = useCallback(() => {
-    setMusic(obj => ({
+    setMusic((obj) => ({
       ...obj,
       play: 'PAUSE',
-    }))
+    }));
   }, []);
-
+  // 상태가 업데이트될때마다 특정 작업 수행
   useEffect(() => {
-    if(music.play === 'PLAY') {
+    if (music.play === 'PLAY') {
       Audio.current.play();
       PlayImg.current.src = btn.pause;
-    } else if(music.play === 'PAUSE') {
+    } else if (music.play === 'PAUSE') {
       Audio.current.pause();
       PlayImg.current.src = btn.play;
     }
   }, [music]);
-  
+
   return (
-    <div className={cx('music', { invisible })} onPointerEnter={Visible} onPointerLeave={Invisible} ref={This}>
+    <div
+      className={cx('music', { invisible })}
+      onPointerEnter={Visible}
+      onPointerLeave={Invisible}
+      onPointerDown={DragDrop}
+      ref={This}
+    >
       <div className={cx('btns', { visible })}>
         <div className="btn-red" onClick={Close}></div>
       </div>
-      <img className={cx('music-img')} src={PLAYLIST[music.index].IMG} alt=""/>
+      <img className={cx('music-img')} src={PLAYLIST[music.index].IMG} alt="" />
       <div className={cx('opers', { visible })}>
         <div>
           <div className={cx('song')}>{PLAYLIST[music.index].SONG}</div>
@@ -156,17 +181,25 @@ const Music = () => {
         </div>
         <div className={cx('oper-btns')}>
           <div className={cx('oper-btn')} onClick={prevMusic}>
-            <img className='basic-img' src={btn.prev} alt=""/>
+            <img className="basic-img" src={btn.prev} alt="" />
           </div>
-          <div className={cx('oper-btn')} onClick={music.play === 'PLAY' ? PauseMusic : PlayMusic} ref={PlayBtn}>
-            <img className='basic-img' src={btn.play} ref={PlayImg} alt=""/>
+          <div
+            className={cx('oper-btn')}
+            onClick={music.play === 'PLAY' ? PauseMusic : PlayMusic}
+            ref={PlayBtn}
+          >
+            <img className="basic-img" src={btn.play} ref={PlayImg} alt="" />
           </div>
           <div className={cx('oper-btn')} onClick={nextMusic}>
-            <img className='basic-img' src={btn.next} alt=""/>
+            <img className="basic-img" src={btn.next} alt="" />
           </div>
         </div>
-      </div>  
-      <audio src={PLAYLIST[music.index].AUDIO} ref={Audio} onEnded={nextMusic}></audio>
+      </div>
+      <audio
+        src={PLAYLIST[music.index].AUDIO}
+        ref={Audio}
+        onEnded={nextMusic}
+      ></audio>
     </div>
   );
 };

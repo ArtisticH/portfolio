@@ -35,6 +35,13 @@
   padding: 7px 12px;
   white-space: nowrap;
   visibility: hidden;
+  opacity: 0;
+}
+
+.tooltip.visible {
+  visibility: visible;
+  opacity: 1;
+  animation: all 0.1s ease-out;
 }
 
 .circle {

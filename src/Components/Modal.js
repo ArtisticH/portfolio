@@ -6,17 +6,17 @@ import { Context } from '../Context/Context';
 const cx = classNames.bind(styles);
 
 const Modal = () => {
-  const { state: { music, stopMusic }, actions: { setModal, setMusic, setStopMusic }} = useContext(Context);
+  const { state: { stopMusic }, actions: { setModal, setMusic, setStopMusic }} = useContext(Context);
   const ModalChange = useCallback(() => {
-    setModal(false);
-    if(stopMusic) {
+    setModal(false); // 모달 없애기
+    if(stopMusic) { // 모달이 등장할때 노래가 재생중이였다면 다시 재생시키기
       setMusic(obj => ({
         ...obj,
         play: 'PLAY',
-      }))
+      }));
       setStopMusic(false);
     }
-  }, [music.play, stopMusic]);
+  }, [stopMusic]);
 
   return (
     <>

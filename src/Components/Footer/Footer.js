@@ -6,7 +6,7 @@ const style = {
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'center',
-  height: '75px',  
+  height: '75px',
 };
 const innerStyle = {
   zIndex: '15',
@@ -61,16 +61,15 @@ const Applications = [
     src: Imgs.sticker,
     circle: true,
   },
-];  
+];
 
 const Footer = () => {
-
   return (
     <div style={style}>
       <div style={innerStyle}>
-      {Applications.map(app =>
-      <Application key={app.title} app={app}/>
-      )}
+        {Applications.map((app) => (
+          <Application key={app.title} app={app}/>
+        ))}
       </div>
     </div>
   );

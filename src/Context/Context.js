@@ -1,9 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react';
 
 const state = {
   main: true, // 부팅 화면에서 메인 화면으로 넘어가기
   modal: false, // 모달 창 클릭과 취소
-  music: { // 뮤직앱에서 재생/멈춤과 다음/이전노래 등에 사용, 
+  music: {
+    // 뮤직앱에서 재생/멈춤과 다음/이전노래 등에 사용,
     index: 0,
     play: null,
   },
@@ -16,8 +17,42 @@ const state = {
     sticker: {
       appClosed: false,
       iconClicked: false,
-    }
-  }
+    },
+  },
+  browser: {
+    width: '',
+    height: '',
+  },
+  gifBtn: {
+    bookclub: {
+      red: {
+        clicked: false,
+        banned: false,
+      },
+      yellow: {
+        clicked: false,
+        banned: false,
+      },
+      green: {
+        clicked: false,
+        banned: false,
+      },
+    },
+    spotify: {
+      red: {
+        clicked: false,
+        banned: false,
+      },
+      yellow: {
+        clicked: false,
+        banned: false,
+      },
+      green: {
+        clicked: false,
+        banned: false,
+      },
+    },
+  },
 };
 
 const actions = {
@@ -26,6 +61,8 @@ const actions = {
   setMusic: () => {},
   setStopMusic: () => {},
   setIconRelated: () => {},
+  setBrowser: () => {},
+  setGif: () => {},
 };
 
 const Context = createContext({
@@ -33,7 +70,7 @@ const Context = createContext({
   actions,
 });
 
-const Provider = ({children}) => {
+const Provider = ({ children }) => {
   const [main, setMain] = useState(true);
   const [modal, setModal] = useState(false);
   const [music, setMusic] = useState({
@@ -49,16 +86,55 @@ const Provider = ({children}) => {
     sticker: {
       appClosed: false,
       iconClicked: false,
-    }
+    },
+  });
+  const [browser, setBrowser] = useState({
+    width: '', // 브라우저의 너비
+    height: '', // Center의 높이
+  });
+  const [gifBtn, setGif] = useState({
+    bookclub: {
+      red: {
+        clicked: false,
+        banned: false,
+      },
+      yellow: {
+        clicked: false,
+        banned: false,
+      },
+      green: {
+        clicked: false,
+        banned: false,
+      },
+    },
+    spotify: {
+      red: {
+        clicked: false,
+        banned: false,
+      },
+      yellow: {
+        clicked: false,
+        banned: false,
+      },
+      green: {
+        clicked: false,
+        banned: false,
+      },
+    },
   });
   const value = {
-    state: { modal, main, music, stopMusic, iconRelated },
-    actions: { setModal, setMain, setMusic, setStopMusic, setIconRelated }
+    state: { modal, main, music, stopMusic, iconRelated, browser, gifBtn },
+    actions: {
+      setModal,
+      setMain,
+      setMusic,
+      setStopMusic,
+      setIconRelated,
+      setBrowser,
+      setGif,
+    },
   };
-  return (
-    <Context.Provider value={value}>{children}</Context.Provider>
-  )
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 };
-
 
 export { Provider, Context };

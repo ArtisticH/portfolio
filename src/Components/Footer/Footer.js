@@ -24,46 +24,47 @@ const Applications = [
   {
     title: 'Finder',
     src: Imgs.finder,
-    circle: false
+    circle: false,
   },
   {
     title: 'Safari',
     src: Imgs.safari,
-    circle: false
+    circle: false,
   },
   {
     title: 'Music',
     src: Imgs.music,
-    circle: true
+    circle: true,
   },
   {
     title: 'Podcast',
     src: Imgs.podcast,
-    circle: false
+    circle: false,
   },
   {
     title: 'Google Chrome',
     src: Imgs.chrome,
-    circle: false
+    circle: false,
   },
   {
     title: 'Terminal',
     src: Imgs.terminal,
-    circle: false
+    circle: false,
   },
   {
     title: 'Kakaotalk',
     src: Imgs.kakaotalk,
-    circle: false
+    circle: false,
   },
   {
     title: 'Sticker',
     src: Imgs.sticker,
-    circle: true
+    circle: true,
   },
-];
+];  
 
 const Footer = () => {
+
   return (
     <div style={style}>
       <div style={innerStyle}>

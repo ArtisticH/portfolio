@@ -8,12 +8,13 @@ const Main = () => {
   const style = {
     height: '100vh',
   };
-  const { state: { modalClicked } } = useContext(Context);
+  // 모달 클릭시에는 모달 창 보여주기
+  const { state: { modal } } = useContext(Context);
   return (
     <div style={style}>
       <Nav />
       <Background />
-      { modalClicked && <Modal />}
+      { modal && <Modal />}
     </div>
   );
 };

@@ -6,10 +6,17 @@ import { Context } from '../../Context/Context';
 const cx = classNames.bind(styles);
 
 const Icon = ({ dir, icon, src }) => {
-  const { actions: { setModal }} = useContext(Context);
+  const { state: { music }, actions: { setModal, setMusic, setStopMusic }} = useContext(Context);
   const ModalChange = useCallback(() => {
-    setModal(clicked => !clicked);
-  }, []);
+    setModal(true);
+    if(music.play === 'PLAY') {
+      setStopMusic(true);
+      setMusic(obj => ({
+        ...obj,
+        play: 'PAUSE',
+      }))
+    }
+  }, [music.play]);
 
   return (
     <div className={cx('elem', dir)} onClick={ModalChange}>

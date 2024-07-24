@@ -5,31 +5,6 @@ import Imgs from '../../Img/Nav';
 
 const cx = classNames.bind(styles);
 
-// const Li = ({ title, isArrowRequired, children }) => {
-//   return (
-//     <li className={cx('type')}>
-//       <a className={cx('type-title')} href="#" target="_blank">{title}</a>
-//       { isArrowRequired && 
-//         <div className={cx('arrow')}>
-//           <img class="basic-img" src={Imgs.left.arrow} alt="arrow" />
-//         </div>      
-//       }
-//       {children}
-//     </li>
-//   );
-// };
-
-// const List = ({ title, children }) => {
-//   return (
-//     <div className={cx('list')}>
-//       <div className={cx('title')}>{title}</div>
-//       <ul className={cx('types')}>{children}</ul>
-//     </div>
-//   );
-// };
-
-// export { List, Li };
-
 const Lis = ({ li, arrow, children }) => {
   return (
     <li className={cx('li')}>

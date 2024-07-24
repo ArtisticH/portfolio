@@ -6,10 +6,17 @@ import { Context } from '../../Context/Context';
 const cx = classNames.bind(styles);
 
 const DateTime = () => {
-  const { actions: { setModal }} = useContext(Context);
+  const { state: { music }, actions: { setModal, setMusic, setStopMusic }} = useContext(Context);
   const ModalChange = useCallback(() => {
-    setModal(clicked => !clicked);
-  }, []);
+    setModal(true);
+    if(music.play === 'PLAY') {
+      setStopMusic(true);
+      setMusic(obj => ({
+        ...obj,
+        play: 'PAUSE',
+      }))
+    }
+  }, [music.play]);
 
   const [month, setMonth] = useState('');
   const [date, setDate] = useState('');

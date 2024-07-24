@@ -127,7 +127,7 @@ const Center = () => {
       {/* {gifs.map(gif => 
         <Gif key={gif.title} gif={gif}/>
       )} */}
-      {/* <Sticker /> */}
+      <Sticker />
       <Music/>
     </div>
   );

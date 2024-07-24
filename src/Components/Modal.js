@@ -6,10 +6,18 @@ import { Context } from '../Context/Context';
 const cx = classNames.bind(styles);
 
 const Modal = () => {
-  const { actions: { setModal }} = useContext(Context);
+  const { state: { music, stopMusic }, actions: { setModal, setMusic, setStopMusic }} = useContext(Context);
   const ModalChange = useCallback(() => {
-    setModal(clicked => !clicked);
-  }, []);
+    setModal(false);
+    if(stopMusic) {
+      setMusic(obj => ({
+        ...obj,
+        play: 'PLAY',
+      }))
+      setStopMusic(false);
+    }
+  }, [music.play, stopMusic]);
+
   return (
     <>
       <div className={cx('background')}></div>

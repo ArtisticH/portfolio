@@ -44,6 +44,11 @@
   background-color: white;
 }
 
+.circle.invisible {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .app.dblclicked {
   animation: dblclicked 0.4s linear;
 }

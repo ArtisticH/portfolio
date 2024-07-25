@@ -10,7 +10,7 @@ const {
 } = Imgs;
 const cx = classNames.bind(styles);
 
-const Gif = ({ gif }) => {
+const Gif = React.memo(({ gif }) => {
   const {
     red,
     clickRed,
@@ -51,6 +51,6 @@ const Gif = ({ gif }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Gif;

@@ -5,7 +5,7 @@ import { Context } from '../../Context/Context';
 
 const cx = classNames.bind(styles);
 
-const Icon = ({ dir, icon, src }) => {
+const Icon = React.memo(({ dir, icon, src }) => {
   const { state: { music: { play } }, actions: { setModal, setMusic, setStopMusic }} = useContext(Context);
   // 🎾 useEffect와 Context API 사용시에는 어느 컴포넌트에 useEffect가 있던지
   // 다른 컴포넌트에서 상태 값이 바뀔때 모든 useEffect가 동시에 활성화된다. 
@@ -29,6 +29,6 @@ const Icon = ({ dir, icon, src }) => {
       <img className={cx('icon', icon)} src={src} alt=''/>
     </div>
   );
-};
+});
 
 export default Icon;

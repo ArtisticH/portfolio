@@ -64,12 +64,12 @@ const state = {
     spotify: null,
     intro: null,
   },
-  dragDrop: {
+  currentList: {
+    clicked: null,
+    ul: null,
     target: null,
-    shiftX: 0,
-    shiftY: 0,
   },
-  zIndex: '20'
+  currentLis: null,
 };
 
 const actions = {
@@ -82,8 +82,8 @@ const actions = {
   setBtn: () => {},
   setCurrentFolder: () => {},
   setCurrentFile: () => {},
-  setDragDrop: () => {},
-  setZIndex: () => {}
+  setCurrentList: () => {},
+  setCurrentLis: () => {},
 };
 
 const Context = createContext({
@@ -140,12 +140,16 @@ const Provider = ({ children }) => {
     spotify: null,
     intro: null,
   });
-  const [dragDrop, setDragDrop] = useState({
+  const [currentList, setCurrentList] = useState({
+    clicked: null,
+    ul: null,
     target: null,
-    shiftX: 0,
-    shiftY: 0,
   });
-  const [zIndex, setZIndex] = useState('20');
+  const [currentLis, setCurrentLis] = useState({
+    target: null,
+    ul: null,
+  });
+
   const value = {
     state: {
       modal,
@@ -157,8 +161,8 @@ const Provider = ({ children }) => {
       btn,
       currentFolder,
       currentFile,
-      dragDrop,
-      zIndex
+      currentList,
+      currentLis
     },
     actions: {
       setModal,
@@ -170,8 +174,8 @@ const Provider = ({ children }) => {
       setBtn,
       setCurrentFolder,
       setCurrentFile,
-      setDragDrop,
-      setZIndex
+      setCurrentList,
+      setCurrentLis
     },
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;

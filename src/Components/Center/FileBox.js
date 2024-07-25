@@ -9,7 +9,7 @@ import { DragDrop } from '../../Hooks/DragDrop';
 
 const cx = classNames.bind(styles);
 
-const FileBox = ({ file }) => {
+const FileBox = React.memo(({ file }) => {
   const {
     red,
     clickRed,
@@ -62,6 +62,6 @@ const FileBox = ({ file }) => {
       </div>
     </div>
   );
-};
+});
 
 export default FileBox;

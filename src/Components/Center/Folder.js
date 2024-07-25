@@ -13,7 +13,7 @@ import { Context } from '../../Context/Context';
 
 const cx = classNames.bind(styles);
 
-const Folder = ({ folder }) => {
+const Folder = React.memo(({ folder }) => {
   const This = useRef(null);
   const [clicked, setClick] = useState(false);
   const {
@@ -56,6 +56,6 @@ const Folder = ({ folder }) => {
       <div className={cx('name', { clicked })}>{folder.title}</div>
     </div>
   );
-};
+});
 
 export default Folder;

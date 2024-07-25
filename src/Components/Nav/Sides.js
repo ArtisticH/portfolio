@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from './Icon';
 import DateTime from './DateTime';
 import Imgs from '../../Img/Nav'
-import { List, Ul, Lis } from './List';
+import { List, Ul, Lis, Versions } from './List';
 
 const { left, right } = Imgs;
 const style = {
@@ -138,7 +138,7 @@ const Left = () => {
         <Ul>
             {portfolios.map((pf, i) => 
               <Lis key={pf.title} li={pf} arrow={true}>
-                <Ul width='versions'>
+                <Versions>
                   {versions[i].map((version, index) => 
                     <Lis key={version.title} li={version} arrow={true}>
                       <Ul width='ways'>
@@ -148,7 +148,7 @@ const Left = () => {
                       </Ul>
                     </Lis>
                   )}
-                </Ul>
+                </Versions>
               </Lis>
             )}
           </Ul>

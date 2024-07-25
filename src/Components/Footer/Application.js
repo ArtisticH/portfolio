@@ -6,7 +6,7 @@ import { produce } from 'immer';
 
 const cx = classNames.bind(styles);
 
-const Application = ({ app }) => {
+const Application = React.memo(({ app }) => {
   const {
     state: {
       music: { play },
@@ -88,6 +88,6 @@ const Application = ({ app }) => {
       <div className={cx('tooltip', { visible: tooltip })}>{app.title}</div>
     </div>
   );
-};
+});
 
 export default Application;

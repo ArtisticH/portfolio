@@ -13,7 +13,7 @@ import { produce } from 'immer';
 
 const cx = classNames.bind(styles);
 
-const File = ({ info, location }) => {
+const File = React.memo(({ info, location }) => {
   const This = useRef(null);
   const [clicked, setClick] = useState(false);
   const {
@@ -52,6 +52,6 @@ const File = ({ info, location }) => {
       <div className={cx('name', { clicked })}>{info.title}</div>
     </div>
   );
-};
+});
 
 export default File;

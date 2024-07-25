@@ -19,6 +19,10 @@
   margin-left: -6px;
 }
 
+.elem.clicked {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .elem-title {
   font-family: var(--font-inter);
   font-size: 0.9rem;
@@ -45,16 +49,27 @@
   font-weight: 400;
 }
 
-.ul.versions {
+.ul.visible,
+.versions.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.versions {
+  position: absolute;
   visibility: hidden;
+  border-radius: 5px;
   width: 250px;
   top: -5px;
   left: 100%;
+  padding: 5px;
+  font-weight: 400;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: rgba(121, 119, 125, 1);
   backdrop-filter: unset;
 }
 
-.ul.ways {
+.ways {
   visibility: hidden;
   width: 100px;
   top: -5px;

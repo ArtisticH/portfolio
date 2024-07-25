@@ -66,10 +66,19 @@ const state = {
   },
   currentList: {
     clicked: null,
-    ul: null,
-    target: null,
+    types: null,
+    list: null,
   },
-  currentLis: null,
+  currentType: {
+    type: null,
+    versions: null,
+    hovered: false,
+  },
+  currentVersion: {
+    version: null,
+    ways: null,
+    hovered: false,
+  }
 };
 
 const actions = {
@@ -83,7 +92,8 @@ const actions = {
   setCurrentFolder: () => {},
   setCurrentFile: () => {},
   setCurrentList: () => {},
-  setCurrentLis: () => {},
+  setCurrentType: () => {},
+  setCurrentVersion: () => {},
 };
 
 const Context = createContext({
@@ -141,14 +151,21 @@ const Provider = ({ children }) => {
     intro: null,
   });
   const [currentList, setCurrentList] = useState({
-    clicked: null,
-    ul: null,
-    target: null,
+    clicked: false,
+    types: null,
+    list: null,
   });
-  const [currentLis, setCurrentLis] = useState({
-    target: null,
-    ul: null,
+  const [currentType, setCurrentType] = useState({
+    type: null,
+    versions: null,
+    hovered: false,
   });
+  const [currentVersion, setCurrentVersion] = useState({
+    version: null,
+    ways: null,
+    hovered: false,
+  });
+
 
   const value = {
     state: {
@@ -162,7 +179,8 @@ const Provider = ({ children }) => {
       currentFolder,
       currentFile,
       currentList,
-      currentLis
+      currentType,
+      currentVersion
     },
     actions: {
       setModal,
@@ -175,7 +193,8 @@ const Provider = ({ children }) => {
       setCurrentFolder,
       setCurrentFile,
       setCurrentList,
-      setCurrentLis
+      setCurrentType,
+      setCurrentVersion
     },
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;

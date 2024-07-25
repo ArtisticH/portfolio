@@ -13,16 +13,99 @@ import { produce } from 'immer';
 
 const cx = classNames.bind(styles);
 
-const Lis = React.memo(({ li, arrow, children }) => {
+const List = React.memo(({ title, children }) => {
   const This = useRef(null);
-  const PointerEnter = useCallback(() => {
-    console.log('여기')
-    This.current.lastElementChild.style.visibility = 'visible';
-    console.log('d', This.current.lastElementChild);
+  const [clicked, setClicked] = useState(false);
+  const {
+    state: { currentList },
+    actions: { setCurrentList },
+  } = useContext(Context);
+  const Click = useCallback(() => {
+    setCurrentList(
+      produce((draft) => {
+        draft.list = This.current; // 현재 클릭한 리스트
+        draft.clicked = !draft.clicked; // 클릭여부
+        draft.types = This.current.lastElementChild;
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    if (currentList.clicked && currentList.list == This.current) {
+      setClicked(true);
+    } else {
+      setClicked(false);
+    }
+  }, [currentList]);
+
+  return (
+    <div
+      className={cx('list', { clicked })}
+      onClick={Click}
+      data-list="true"
+      ref={This}
+    >
+      <div className={cx('list-title')}>{title}</div>
+      {children}
+    </div>
+  );
+});
+
+const Types = React.memo(({ children }) => {
+  const This = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const {
+    state: { currentList },
+    actions: { setCurrentType },
+  } = useContext(Context);
+
+  useEffect(() => {
+    if (currentList.clicked && currentList.types == This.current) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  }, [currentList]);
+
+  const PointerOver = useCallback((e) => {
+    const target = e.target.closest('[data-type]');
+    if (!target) return;
+    setCurrentType(
+      produce((draft) => {
+        draft.hovered = true;
+        draft.type = target;
+        draft.versions = target.lastElementChild;
+      })
+    );
+  }, []);
+
+  const PointerOut = useCallback((e) => {
+    const target = e.target.closest('[data-type]');
+    if (target) return;
+    setCurrentType(
+      produce((draft) => {
+        draft.hovered = false;
+        draft.type = null;
+        draft.versions = null;
+      })
+    );
   }, []);
 
   return (
-    <li className={cx('li')} onPointerEnter={PointerEnter} ref={This}>
+    <ul
+      className={cx('types', { visible })}
+      ref={This}
+      onPointerOver={PointerOver}
+      onPointerOut={PointerOut}
+    >
+      {children}
+    </ul>
+  );
+});
+
+const Type = React.memo(({ li, arrow, children }) => {
+  return (
+    <li className={cx('li')} data-type="true">
       <a className={cx('li-title')} href={li.href} target="_blank">
         {li.title}
       </a>
@@ -40,76 +123,106 @@ const Versions = React.memo(({ children }) => {
   const This = useRef(null);
   const [visible, setVisible] = useState(false);
   const {
-    state: { currentLis },
-    actions: { setCurrentLis },
+    state: { currentType },
+    actions: { setCurrentVersion }
   } = useContext(Context);
 
-  return (
-    <ul className={cx('versions', { visible })} ref={This}>
-      {children}
-    </ul>
-  );
-});
-
-const Ul = React.memo(({ children, width }) => {
-  const This = useRef(null);
-  const [visible, setVisible] = useState(false);
-  const {
-    state: { currentList },
-    actions: { setCurrentLis },
-  } = useContext(Context);
-
-  useEffect(() => {
-    if (currentList.clicked && currentList.ul == This.current) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  }, [currentList]);
-
-  return (
-    <ul className={cx('ul', width, { visible })} ref={This}>
-      {children}
-    </ul>
-  );
-});
-
-const List = React.memo(({ title, children }) => {
-  const This = useRef(null);
-  const [clicked, setClicked] = useState(false);
-  const {
-    state: { currentList },
-    actions: { setCurrentList },
-  } = useContext(Context);
-  const Click = useCallback(() => {
-    setCurrentList(
+  const PointerOver = useCallback((e) => {
+    const target = e.target.closest('[data-version]');
+    if (!target) return;
+    setCurrentVersion(
       produce((draft) => {
-        draft.target = This.current; // 현재 클릭한 리스트
-        draft.clicked = !draft.clicked; // 클릭여부
-        draft.ul = This.current.lastElementChild;
+        draft.hovered = true;
+        draft.version = target;
+        draft.ways = target.lastElementChild;
+      })
+    );
+  }, []);
+
+  const PointerOut = useCallback((e) => {
+    const target = e.target.closest('[data-version]');
+    if (target) return;
+    setCurrentVersion(
+      produce((draft) => {
+        draft.hovered = false;
+        draft.version = null;
+        draft.ways = null;
       })
     );
   }, []);
 
   useEffect(() => {
-    if (currentList.clicked && currentList.target == This.current) {
-      setClicked(true);
+    if (currentType.hovered && currentType.versions == This.current) {
+      setVisible(true);
     } else {
-      setClicked(false);
+      setVisible(false);
     }
-  }, [currentList]);
+  }, [currentType]);
 
   return (
-    <div
-      className={cx('elem', { clicked })}
-      onClick={Click}
-      data-list="true"
+    <ul
+      className={cx('versions', { visible })}
       ref={This}
+      onPointerOver={PointerOver}
+      onPointerOut={PointerOut}
     >
-      <div className={cx('elem-title')}>{title}</div>
       {children}
-    </div>
+    </ul>
   );
 });
 
-export { List, Ul, Lis, Versions };
+const Version = React.memo(({ li, arrow, children }) => {
+  return (
+    <li className={cx('li')} data-version="true">
+      <a className={cx('li-title')} href={li.href} target="_blank">
+        {li.title}
+      </a>
+      {arrow && (
+        <div className={cx('arrow')}>
+          <img className="basic-img" src={Imgs.left.arrow} alt="arrow" />
+        </div>
+      )}
+      {children}
+    </li>
+  );
+});
+
+const Ways = React.memo(({ children }) => {
+  const This = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const {
+    state: { currentVersion },
+  } = useContext(Context);
+
+  useEffect(() => {
+    if (currentVersion.hovered && currentVersion.ways == This.current) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  }, [currentVersion]);
+
+  return (
+    <ul className={cx('ways', { visible })} ref={This}>
+      {children}
+    </ul>
+  );
+});
+
+const Way = React.memo(({ li, arrow, children }) => {
+  return (
+    <li className={cx('li')}>
+      <a className={cx('li-title')} href={li.href} target="_blank">
+        {li.title}
+      </a>
+      {arrow && (
+        <div className={cx('arrow')}>
+          <img className="basic-img" src={Imgs.left.arrow} alt="arrow" />
+        </div>
+      )}
+      {children}
+    </li>
+  );
+});
+
+export { List, Types, Type, Versions, Version, Ways, Way };

@@ -1,8 +1,8 @@
 import React from 'react';
 import Icon from './Icon';
 import DateTime from './DateTime';
-import Imgs from '../../Img/Nav'
-import { List, Ul, Lis, Versions } from './List';
+import Imgs from '../../Img/Nav';
+import { List, Types, Type, Versions, Version, Ways, Way } from './List';
 
 const { left, right } = Imgs;
 const style = {
@@ -12,153 +12,168 @@ const style = {
   justifyContent: 'center',
 };
 const icons = ['play', 'bluetooth', 'battery', 'wifi', 'siri'];
-const skill = ['HTML', 'CSS', 'JAVASCRIPT', 'REACT(REDUX)', 'TYPESCRIPT', 'NODE.JS', 'MYSQL', 'GIT'];
+const skill = [
+  'HTML',
+  'CSS',
+  'JAVASCRIPT',
+  'REACT(REDUX)',
+  'TYPESCRIPT',
+  'NODE.JS',
+  'MYSQL',
+  'GIT',
+];
 const nothingHref = '#';
 const skills = [];
-for(let elem of skill) {
+for (let elem of skill) {
   skills[skills.length] = {
     title: elem,
-    href: nothingHref
-  }
+    href: nothingHref,
+  };
 }
 const portfolio = ['BOOK CLUB', 'SPOTIFY DESIGN', 'INTRO'];
 const portfolios = [];
-for(let elem of portfolio) {
+for (let elem of portfolio) {
   portfolios[portfolios.length] = {
     title: elem,
-    href: nothingHref
-  }
+    href: nothingHref,
+  };
 }
 const versions = [
-  [ // BOOK CLUB
+  [
+    // BOOK CLUB
     {
       title: 'Vanilla',
-      href: ''
+      href: '',
     },
     {
       title: 'React + Redux + Typescript',
-      href: ''
-    }
+      href: '',
+    },
   ],
-  [ // SPOTIFY
+  [
+    // SPOTIFY
     {
       title: 'Vanilla',
-      href: ''
+      href: '',
     },
     {
       title: 'React + Typescript',
-      href: ''
-    }
+      href: '',
+    },
   ],
-  [ // INTRO
+  [
+    // INTRO
     {
       title: 'Vanilla',
-      href: ''
+      href: '',
     },
     {
       title: 'React + Typescript',
-      href: ''
-    }
-  ]
+      href: '',
+    },
+  ],
 ];
 const ways = [
-  [ // BOOK CLUB
+  [
+    // BOOK CLUB
     [
       {
         title: 'GITHUB',
-        href: ''
+        href: '',
       },
       {
         title: 'SITE',
-        href: ''
-      }  
+        href: '',
+      },
     ],
     [
       {
         title: 'GITHUB',
-        href: ''
+        href: '',
       },
       {
         title: 'SITE',
-        href: ''
-      }  
-    ],
-  ],
-  [ // SPOTIFY
-    [
-      {
-        title: 'GITHUB',
-        href: ''
+        href: '',
       },
-      {
-        title: 'SITE',
-        href: ''
-      }  
-    ],
-    [
-      {
-        title: 'GITHUB',
-        href: ''
-      },
-      {
-        title: 'SITE',
-        href: ''
-      }  
     ],
   ],
-  [ // INTRO
+  [
+    // SPOTIFY
     [
       {
         title: 'GITHUB',
-        href: ''
+        href: '',
       },
       {
         title: 'SITE',
-        href: ''
-      }  
+        href: '',
+      },
     ],
     [
       {
         title: 'GITHUB',
-        href: ''
+        href: '',
       },
       {
         title: 'SITE',
-        href: ''
-      }  
+        href: '',
+      },
     ],
   ],
-]
+  [
+    // INTRO
+    [
+      {
+        title: 'GITHUB',
+        href: '',
+      },
+      {
+        title: 'SITE',
+        href: '',
+      },
+    ],
+    [
+      {
+        title: 'GITHUB',
+        href: '',
+      },
+      {
+        title: 'SITE',
+        href: '',
+      },
+    ],
+  ],
+];
 
 const Left = () => {
   return (
     <div style={style}>
-      <Icon dir='left' icon='apple' src={left['apple']}/>
-      <List title='PORTFOLIO'>
-        <Ul>
-            {portfolios.map((pf, i) => 
-              <Lis key={pf.title} li={pf} arrow={true}>
-                <Versions>
-                  {versions[i].map((version, index) => 
-                    <Lis key={version.title} li={version} arrow={true}>
-                      <Ul width='ways'>
-                        {ways[i][index].map(way => 
-                          <Lis key={way.title} li={way} arrow={false}/>
-                        )}
-                      </Ul>
-                    </Lis>
-                  )}
-                </Versions>
-              </Lis>
-            )}
-          </Ul>
+      <Icon dir="left" icon="apple" src={left['apple']} />
+      <List title="PORTFOLIO">
+        <Types>
+          {portfolios.map((pf, i) => (
+            <Type key={pf.title} li={pf} arrow={true}>
+              <Versions>
+                {versions[i].map((version, index) => (
+                  <Version key={version.title} li={version} arrow={true}>
+                    <Ways width="ways">
+                      {ways[i][index].map((way) => (
+                        <Way key={way.title} li={way} arrow={false} />
+                      ))}
+                    </Ways>
+                  </Version>
+                ))}
+              </Versions>
+            </Type>
+          ))}
+        </Types>
       </List>
-      <List title='SKILLS'>
-        <Ul>
-          {skills.map(skill => 
-            <Lis key={skill.title} li={skill} arrow={false}/>
-          )}
-        </Ul>
+      <List title="SKILLS">
+        <Types>
+          {skills.map((skill) => (
+            <Type key={skill.title} li={skill} arrow={false} />
+          ))}
+        </Types>
       </List>
     </div>
   );
@@ -168,7 +183,7 @@ const Right = () => {
   return (
     <div style={style}>
       {icons.map((icon) => (
-        <Icon key={icon} dir="right" icon={icon} src={right[icon]}/>
+        <Icon key={icon} dir="right" icon={icon} src={right[icon]} />
       ))}
       <DateTime />
     </div>

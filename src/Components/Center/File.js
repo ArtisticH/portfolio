@@ -7,11 +7,13 @@ const cx = classNames.bind(styles);
 
 const File = ({ info }) => {
   return (
-    <div className={cx()} href={info.href}>
+    <div className={cx('file')} href={info.href}>
       <div className={cx('icon')}>
         <img className="basic-img" src={fileIcon} alt="file"/>
       </div>
-      <div className={cx('name')}>{info.title}</div>
+      <div className={cx('name')}>
+        {info.title}
+      </div>
     </div>
   );
 };

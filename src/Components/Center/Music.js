@@ -11,7 +11,8 @@ import classNames from 'classnames/bind';
 import styles from '../../Css/Center/Music.module.css';
 import { Context } from '../../Context/Context';
 import { produce } from 'immer';
-import DragDrop from '../../Tools/DragDrop';
+import DragDrop from '../../Hooks/DragDrop';
+import { useClose } from '../../Hooks/Close';
 
 /*
 // 기능
@@ -84,34 +85,18 @@ const Music = () => {
   const PlayImg = useRef(null);
   const PlayBtn = useRef(null);
   const [visible, setVisible] = useState(false); // 호버효과
-  const [invisible, setInvisible] = useState(false); // 창닫기
   const {
     state: { music, iconRelated },
-    actions: { setMusic, setIconRelated },
+    actions: { setMusic },
   } = useContext(Context);
-  // 뮤직 창 닫을때 invisible: true로 창을 닫고,
-  // 함수형 업데이트를 쓰기 때문에 상태가 최신 값이 반영된다.
-  const Close = useCallback(() => {
-    setInvisible(true);
-    // Application에서 사용
-    // appClosed = true되면 서클 사라지고, 더블클릭의 조건이 된다.
-    // 더블클릭시 iconClicked = true를 만들어 애니메이션 활성화시키고
-    // 이걸 계속 반복하기 위해 닫을때 iconClicked = false를 만든다.
-    setIconRelated(
-      produce((draft) => {
-        // 함수형 업데이트 반환
-        draft.music.appClosed = true;
-        draft.music.iconClicked = false;
-      })
-    );
-    // 노래 재생중이라면 멈춘다. 그리고 다시 앱을 킬때 모달처럼 자동으로 재생시키는 행위를 하지 않는다.
+  const { invisible, setInvisible, clickClose } = useClose('music', () => {
     setMusic(
       produce((draft) => {
         draft.play = 'PAUSE';
       })
     );
-  }, []);
-  // Application에서 더블클릭시 창이 나타나야 한다. 
+  });
+  // Application에서 더블클릭시 창이 나타나야 한다.
   // Application에서 appClosed: false && iconClicked: true로 값을 만들면
   // 여기서 캐치한다.
   useEffect(() => {
@@ -171,7 +156,7 @@ const Music = () => {
       ref={This}
     >
       <div className={cx('btns', { visible })}>
-        <div className="btn-red" onClick={Close}></div>
+        <div className="btn-red" onClick={clickClose}></div>
       </div>
       <img className={cx('music-img')} src={PLAYLIST[music.index].IMG} alt="" />
       <div className={cx('opers', { visible })}>

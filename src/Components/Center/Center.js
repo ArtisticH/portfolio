@@ -12,7 +12,7 @@ import { produce } from 'immer';
 const gifs = [
   {
     title: 'Book Club',
-    location: 'bookclub', // CSS에서 사용할 클래스 이름
+    location: 'bookclub', // CSS에서 사용할 클래스 이름, 전역 변수에서 프로퍼티 이름으로 사용
     href: '',
     src: bookclubGif,
   },
@@ -30,23 +30,19 @@ const files = [
     location: 'bookclub',
     info: [
       {
-        title: 'Vanilla - Github',
+        title: 'Vanilla\n<Github>',
         href: '',
       },
       {
-        title: 'Vanilla - Site',
+        title: 'Vanilla\n<Site>',
         href: '',
       },
       {
-        title: `React(Redux)
-        + Typescript
-        - Github`,
+        title: `React(Redux)\n+Typescript\n<Github>`,
         href: '',
       },
       {
-        title: `React(Redux)
-        + Typescript
-        - Site`,
+        title: `React(Redux)\n+Typescript\n<Site>`,
         href: '',
       },
       {
@@ -60,23 +56,19 @@ const files = [
     location: 'spotify',
     info: [
       {
-        title: 'Vanilla - Github',
+        title: 'Vanilla\n<Github>',
         href: '',
       },
       {
-        title: 'Vanilla - Site',
+        title: 'Vanilla\n<Site>',
         href: '',
       },
       {
-        title: `React
-        + Typescript
-        - Github`,
+        title: `React\n+Typescript\n<Github>`,
         href: '',
       },
       {
-        title: `React
-        + Typescript
-        - Site`,
+        title: `React\n+Typescript\n<Site>`,
         href: '',
       },
       {
@@ -90,23 +82,19 @@ const files = [
     location: 'intro',
     info: [
       {
-        title: 'Vanilla - Github',
+        title: 'Vanilla\n<Github>',
         href: '',
       },
       {
-        title: 'Vanilla - Site',
+        title: 'Vanilla\n<Site>',
         href: '',
       },
       {
-        title: `React
-        + Typescript
-        - Github`,
+        title: `React\n+Typescript\n<Github>`,
         href: '',
       },
       {
-        title: `React
-        + Typescript
-        - Site`,
+        title: `React\n+Typescript\n<Site>`,
         href: '',
       },
     ]
@@ -152,9 +140,9 @@ const Center = () => {
       {/* {files.map(file => 
         <FileBox key={file.title} file={file}/>
       )} */}
-      {gifs.map(gif => 
+      {/* {gifs.map(gif => 
         <Gif key={gif.title} gif={gif}/>
-      )}
+      )} */}
       {/* <Sticker />
       <Music/> */}
     </div>

@@ -23,11 +23,10 @@ const state = {
     width: '',
     height: '',
   },
-  gifBtn: {
+  btn: {
     bookclub: {
       red: {
         clicked: false,
-        banned: false,
       },
       yellow: {
         clicked: false,
@@ -41,7 +40,6 @@ const state = {
     spotify: {
       red: {
         clicked: false,
-        banned: false,
       },
       yellow: {
         clicked: false,
@@ -53,6 +51,7 @@ const state = {
       },
     },
   },
+  currentFolder: null,
 };
 
 const actions = {
@@ -62,7 +61,8 @@ const actions = {
   setStopMusic: () => {},
   setIconRelated: () => {},
   setBrowser: () => {},
-  setGif: () => {},
+  setBtn: () => {},
+  setCurrentFolder: () => {},
 };
 
 const Context = createContext({
@@ -92,11 +92,10 @@ const Provider = ({ children }) => {
     width: '', // 브라우저의 너비
     height: '', // Center의 높이
   });
-  const [gifBtn, setGif] = useState({
+  const [btn, setBtn] = useState({
     bookclub: {
       red: {
         clicked: false,
-        banned: false,
       },
       yellow: {
         clicked: false,
@@ -110,7 +109,6 @@ const Provider = ({ children }) => {
     spotify: {
       red: {
         clicked: false,
-        banned: false,
       },
       yellow: {
         clicked: false,
@@ -122,8 +120,18 @@ const Provider = ({ children }) => {
       },
     },
   });
+  const [currentFolder, setCurrentFolder] = useState(null);
   const value = {
-    state: { modal, main, music, stopMusic, iconRelated, browser, gifBtn },
+    state: {
+      modal,
+      main,
+      music,
+      stopMusic,
+      iconRelated,
+      browser,
+      btn,
+      currentFolder,
+    },
     actions: {
       setModal,
       setMain,
@@ -131,7 +139,8 @@ const Provider = ({ children }) => {
       setStopMusic,
       setIconRelated,
       setBrowser,
-      setGif,
+      setBtn,
+      setCurrentFolder,
     },
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;

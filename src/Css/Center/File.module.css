@@ -28,5 +28,5 @@
   padding: 2px 5px;
   border-radius: 2px;
   letter-spacing: -0.5px;
-  white-space: nowrap;
+  white-space: pre-line;
 }

@@ -6,8 +6,8 @@ import React, {
 import styles from '../../Css/Center/Sticker.module.css';
 import classNames from 'classnames/bind';
 import { Context } from '../../Context/Context';
-import DragDrop from '../../Hooks/DragDrop';
 import { useClose } from '../../Hooks/Close';
+import { DragDrop } from '../../Hooks/DragDrop';
 
 const cx = classNames.bind(styles);
 

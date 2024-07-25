@@ -137,14 +137,14 @@ const Center = () => {
   return (
     <div style={style} ref={This}>
       <FolderBox />
-      {/* {files.map(file => 
+      {files.map(file => 
         <FileBox key={file.title} file={file}/>
-      )} */}
-      {/* {gifs.map(gif => 
+      )}
+      {gifs.map(gif => 
         <Gif key={gif.title} gif={gif}/>
-      )} */}
-      {/* <Sticker />
-      <Music/> */}
+      )}
+      <Sticker />
+      <Music/>
     </div>
   );
 };

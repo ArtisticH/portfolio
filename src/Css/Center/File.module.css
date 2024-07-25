@@ -30,3 +30,7 @@
   letter-spacing: -0.5px;
   white-space: pre-line;
 }
+
+.name.clicked {
+  background-color: rgb(39,108,216);
+}

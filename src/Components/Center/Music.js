@@ -11,8 +11,8 @@ import classNames from 'classnames/bind';
 import styles from '../../Css/Center/Music.module.css';
 import { Context } from '../../Context/Context';
 import { produce } from 'immer';
-import DragDrop from '../../Hooks/DragDrop';
 import { useClose } from '../../Hooks/Close';
+import { DragDrop } from '../../Hooks/DragDrop';
 
 /*
 // 기능

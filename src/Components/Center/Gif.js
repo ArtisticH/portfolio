@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from '../../Css/Center/Gif.module.css';
 import Imgs from '../../Img/Nav';
 import { useBtns } from '../../Hooks/Btn';
+import { DragDrop } from '../../Hooks/DragDrop';
 
 const {
   left: { arrow },
@@ -20,12 +21,13 @@ const Gif = ({ gif }) => {
     yellowBan,
     greenBan,
     greenStyle,
-  } = useBtns(gif.location);
+  } = useBtns('gif', gif.location);
 
   return (
     <div
       className={cx('gif', { red }, gif.location)}
       style={green ? greenStyle : null}
+      onPointerDown={DragDrop}
     >
       <div className={cx('nav')} onDoubleClick={clickGreen}>
         <div className={cx('title')}>{gif.title}</div>

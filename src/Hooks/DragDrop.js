@@ -1,7 +1,7 @@
+let target;
 let shiftX;
 let shiftY;
-let target;
-let zIndex = '20'; // 전역으로 바꿔? 폴더 열때도 인덱스 필요해
+let zIndex = '20';
 
 function DragDrop(e) {
   target = e.currentTarget;
@@ -30,4 +30,5 @@ function pointerUp() {
   target.removeEventListener("pointerup", pointerUp);
 }
 
-export default DragDrop;
+export { DragDrop }
+

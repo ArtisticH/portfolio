@@ -1,5 +1,19 @@
 import { createContext, useState } from 'react';
 
+const btns = {
+  red: {
+    clicked: false,
+  },
+  yellow: {
+    clicked: false,
+    banned: false,
+  },
+  green: {
+    clicked: false,
+    banned: false,
+  },
+}
+
 const state = {
   main: true, // 부팅 화면에서 메인 화면으로 넘어가기
   modal: false, // 모달 창 클릭과 취소
@@ -24,34 +38,38 @@ const state = {
     height: '',
   },
   btn: {
-    bookclub: {
-      red: {
-        clicked: false,
+    gif: {
+      bookclub: {
+        ...btns,
       },
-      yellow: {
-        clicked: false,
-        banned: false,
-      },
-      green: {
-        clicked: false,
-        banned: false,
-      },
+      spotify: {
+        ...btns,
+      }
     },
-    spotify: {
-      red: {
-        clicked: false,
+    file: {
+      bookclub: {
+        ...btns,
       },
-      yellow: {
-        clicked: false,
-        banned: false,
+      spotify: {
+        ...btns,
       },
-      green: {
-        clicked: false,
-        banned: false,
-      },
+      intro: {
+        ...btns,
+      }
     },
   },
   currentFolder: null,
+  currentFile: {
+    bookclub: null,
+    spotify: null,
+    intro: null,
+  },
+  dragDrop: {
+    target: null,
+    shiftX: 0,
+    shiftY: 0,
+  },
+  zIndex: '20'
 };
 
 const actions = {
@@ -63,6 +81,9 @@ const actions = {
   setBrowser: () => {},
   setBtn: () => {},
   setCurrentFolder: () => {},
+  setCurrentFile: () => {},
+  setDragDrop: () => {},
+  setZIndex: () => {}
 };
 
 const Context = createContext({
@@ -93,34 +114,38 @@ const Provider = ({ children }) => {
     height: '', // Center의 높이
   });
   const [btn, setBtn] = useState({
-    bookclub: {
-      red: {
-        clicked: false,
+    gif: {
+      bookclub: {
+        ...btns,
       },
-      yellow: {
-        clicked: false,
-        banned: false,
-      },
-      green: {
-        clicked: false,
-        banned: false,
-      },
+      spotify: {
+        ...btns,
+      }
     },
-    spotify: {
-      red: {
-        clicked: false,
+    file: {
+      bookclub: {
+        ...btns,
       },
-      yellow: {
-        clicked: false,
-        banned: false,
+      spotify: {
+        ...btns,
       },
-      green: {
-        clicked: false,
-        banned: false,
-      },
+      intro: {
+        ...btns,
+      }
     },
   });
   const [currentFolder, setCurrentFolder] = useState(null);
+  const [currentFile, setCurrentFile] = useState({
+    bookclub: null,
+    spotify: null,
+    intro: null,
+  });
+  const [dragDrop, setDragDrop] = useState({
+    target: null,
+    shiftX: 0,
+    shiftY: 0,
+  });
+  const [zIndex, setZIndex] = useState('20');
   const value = {
     state: {
       modal,
@@ -131,6 +156,9 @@ const Provider = ({ children }) => {
       browser,
       btn,
       currentFolder,
+      currentFile,
+      dragDrop,
+      zIndex
     },
     actions: {
       setModal,
@@ -141,6 +169,9 @@ const Provider = ({ children }) => {
       setBrowser,
       setBtn,
       setCurrentFolder,
+      setCurrentFile,
+      setDragDrop,
+      setZIndex
     },
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;

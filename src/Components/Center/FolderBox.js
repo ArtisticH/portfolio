@@ -2,8 +2,19 @@ import React from 'react';
 import Folder from './Folder';
 
 const FolderBox = () => {
-  const folders = ['Book Club', `Spotify
-  Design`, 'Intro'];
+  const folders = [{
+    title: 'Book Club',
+    prop: 'bookclub'
+  },
+  {
+    title: 'Spotify Design',
+    prop: 'spotify'
+  },
+  {
+    title: 'Intro',
+    prop: 'intro'
+  }];
+
   const style = {
     padding: '20px 0 0 20px',
     display: 'grid',
@@ -13,7 +24,7 @@ const FolderBox = () => {
   return (
     <div style={style}>
       {folders.map(folder => 
-        <Folder key={folder} title={folder}/>
+        <Folder key={folder.prop} folder={folder}/>
       )}
     </div>
   );

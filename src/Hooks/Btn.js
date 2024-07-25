@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState, useContext } from 'react';
 import { Context } from '../Context/Context';
 import { produce } from 'immer';
 
-export const useBtns = (prop) => {
+export const useBtns = (type, prop) => {
   const {
     state: { btn, browser },
     actions: { setBtn },
@@ -20,46 +20,48 @@ export const useBtns = (prop) => {
   const clickRed = useCallback(() => {
     setBtn(
       produce((draft) => {
-        draft[prop].red.clicked = true;
+        draft[type][prop].red.clicked = true;
       })
     );
   }, []);
   useEffect(() => {
-    if(btn[prop].red.clicked) {
+    if(btn[type][prop].red.clicked) {
       setRed(true);
+    } else { // 폴더 더블클릭으로 btn[type][prop].red.clicked = false로 지정하면 창이 열린다.
+      setRed(false);
     }
-  }, [btn[prop].red]);
+  }, [btn[type][prop].red]);
   // 상단바만 남기기, 상태 변경 => useEffect => 클래스로 인한 CSS변화
   // 노란 버튼 클릭시 초록색 비활성화 해야돼,
   const clickYellow = useCallback(() => {
     if(yellowBan) return;
     setBtn(
       produce((draft) => {
-        draft[prop].yellow.clicked = !draft[prop].yellow.clicked;
-        draft[prop].green.banned = draft[prop].yellow.clicked;
+        draft[type][prop].yellow.clicked = !draft[type][prop].yellow.clicked;
+        draft[type][prop].green.banned = draft[type][prop].yellow.clicked;
       })
     );
   }, [yellowBan]);
   // 업데이트
   useEffect(() => {
-    setYellow(btn[prop].yellow.clicked);
-    setGreenBan(btn[prop].green.banned);
-  }, [btn[prop].yellow]); 
+    setYellow(btn[type][prop].yellow.clicked);
+    setGreenBan(btn[type][prop].green.banned);
+  }, [btn[type][prop].yellow]); 
   // 초록 버튼
   const clickGreen = useCallback(() => {
     if(greenBan) return;
     setBtn(
       produce((draft) => {
-        draft[prop].green.clicked = !draft[prop].green.clicked; 
-        draft[prop].yellow.banned = draft[prop].green.clicked;
+        draft[type][prop].green.clicked = !draft[type][prop].green.clicked; 
+        draft[type][prop].yellow.banned = draft[type][prop].green.clicked;
       })
     );
   }, [greenBan]);
   // 업데이트
   useEffect(() => {
-    setGreen(btn[prop].green.clicked);
-    setYellowBan(btn[prop].yellow.banned);
-  }, [btn[prop].green]);   
+    setGreen(btn[type][prop].green.clicked);
+    setYellowBan(btn[type][prop].yellow.banned);
+  }, [btn[type][prop].green]);   
   const greenStyle = {
     width: browser.width,
     height: browser.height,

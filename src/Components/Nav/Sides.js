@@ -46,7 +46,7 @@ const versions = [
       href: '',
     },
     {
-      title: 'React + Redux + Typescript',
+      title: 'React(Redux) + Typescript',
       href: '',
     },
   ],
@@ -54,10 +54,6 @@ const versions = [
     // SPOTIFY
     {
       title: 'Vanilla',
-      href: '',
-    },
-    {
-      title: 'React + Typescript',
       href: '',
     },
   ],
@@ -68,7 +64,7 @@ const versions = [
       href: '',
     },
     {
-      title: 'React + Typescript',
+      title: 'React(Context API) + Typescript',
       href: '',
     },
   ],
@@ -99,16 +95,6 @@ const ways = [
   ],
   [
     // SPOTIFY
-    [
-      {
-        title: 'GITHUB',
-        href: '',
-      },
-      {
-        title: 'SITE',
-        href: '',
-      },
-    ],
     [
       {
         title: 'GITHUB',

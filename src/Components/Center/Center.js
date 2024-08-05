@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext, useCallback } from 'react';
 import FolderBox from './FolderBox';
 import Gif from './Gif';
 import Music from './Music';
@@ -30,24 +30,16 @@ const files = [
     location: 'bookclub',
     info: [
       {
-        title: 'Vanilla\n<Github>',
+        title: `React(Redux)\n<Github>`,
         href: '',
       },
       {
-        title: 'Vanilla\n<Site>',
-        href: '',
-      },
-      {
-        title: `React(Redux)\n+Typescript\n<Github>`,
-        href: '',
-      },
-      {
-        title: `React(Redux)\n+Typescript\n<Site>`,
+        title: `React(Redux)\n<Site>`,
         href: '',
       },
       {
         title: '.gif',
-        href: '',
+        href: 'bookclub',
       },
     ]
   },
@@ -57,23 +49,15 @@ const files = [
     info: [
       {
         title: 'Vanilla\n<Github>',
-        href: '',
+        href: 'https://github.com/ArtisticH/spotify',
       },
       {
         title: 'Vanilla\n<Site>',
-        href: '',
-      },
-      {
-        title: `React\n+Typescript\n<Github>`,
-        href: '',
-      },
-      {
-        title: `React\n+Typescript\n<Site>`,
-        href: '',
+        href: 'https://artistich.github.io/spotify/',
       },
       {
         title: '.gif',
-        href: '',
+        href: 'spotify',
       },
     ]
   },
@@ -82,19 +66,11 @@ const files = [
     location: 'intro',
     info: [
       {
-        title: 'Vanilla\n<Github>',
-        href: '',
+        title: `React\n<Github>`,
+        href: 'https://github.com/ArtisticH/portfolio',
       },
       {
-        title: 'Vanilla\n<Site>',
-        href: '',
-      },
-      {
-        title: `React\n+Typescript\n<Github>`,
-        href: '',
-      },
-      {
-        title: `React\n+Typescript\n<Site>`,
+        title: `React\n<Site>`,
         href: '',
       },
     ]
@@ -102,6 +78,9 @@ const files = [
 ];
 
 const Center = () => {
+  const {
+    actions: { setCurrentList, setCurrentType },
+  } = useContext(Context);
   const This = useRef(null);
   const style = {
     height: 'calc(100vh - 100px)',
@@ -110,6 +89,23 @@ const Center = () => {
   };
   const { actions: { setBrowser }} = useContext(Context);
   
+  const ClickBlank = useCallback(() => {
+    setCurrentType(
+      produce((draft) => {
+        draft.hovered = false;
+        draft.type = null;
+        draft.ways = null;
+      })
+    );
+    setCurrentList(
+      produce((draft) => {
+        draft.list = null;
+        draft.clicked = null;
+        draft.types = null;
+      })
+    );
+  }, []);
+
   useEffect(() => {
     setBrowser(
       produce(draft => {
@@ -135,7 +131,7 @@ const Center = () => {
   }, []);
 
   return (
-    <div style={style} ref={This}>
+    <div style={style} ref={This} onClick={ClickBlank}>
       <FolderBox />
       {files.map(file => 
         <FileBox key={file.title} file={file}/>

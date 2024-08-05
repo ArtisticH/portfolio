@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from './Icon';
 import DateTime from './DateTime';
 import Imgs from '../../Img/Nav';
-import { List, Types, Type, Versions, Version, Ways, Way } from './List';
+import { List, Types, Type, Ways, Way } from './List';
 
 const { left, right } = Imgs;
 const style = {
@@ -17,7 +17,6 @@ const skill = [
   'CSS',
   'JAVASCRIPT',
   'REACT(REDUX)',
-  'TYPESCRIPT',
   'NODE.JS',
   'MYSQL',
   'GIT',
@@ -38,97 +37,36 @@ for (let elem of portfolio) {
     href: nothingHref,
   };
 }
-const versions = [
-  [
-    // BOOK CLUB
-    {
-      title: 'Vanilla',
-      href: '',
-    },
-    {
-      title: 'React(Redux) + Typescript',
-      href: '',
-    },
-  ],
-  [
-    // SPOTIFY
-    {
-      title: 'Vanilla',
-      href: '',
-    },
-  ],
-  [
-    // INTRO
-    {
-      title: 'Vanilla',
-      href: '',
-    },
-    {
-      title: 'React(Context API) + Typescript',
-      href: '',
-    },
-  ],
-];
 const ways = [
   [
-    // BOOK CLUB
-    [
-      {
-        title: 'GITHUB',
-        href: '',
-      },
-      {
-        title: 'SITE',
-        href: '',
-      },
-    ],
-    [
-      {
-        title: 'GITHUB',
-        href: '',
-      },
-      {
-        title: 'SITE',
-        href: '',
-      },
-    ],
+    {
+      title: 'GITHUB',
+      href: '',
+    },
+    {
+      title: 'SITE',
+      href: '',
+    },  
   ],
   [
-    // SPOTIFY
-    [
-      {
-        title: 'GITHUB',
-        href: '',
-      },
-      {
-        title: 'SITE',
-        href: '',
-      },
-    ],
+    {
+      title: 'GITHUB',
+      href: 'https://github.com/ArtisticH/spotify',
+    },
+    {
+      title: 'SITE',
+      href: 'https://artistich.github.io/spotify/',
+    },  
   ],
-  [
-    // INTRO
-    [
-      {
-        title: 'GITHUB',
-        href: '',
-      },
-      {
-        title: 'SITE',
-        href: '',
-      },
-    ],
-    [
-      {
-        title: 'GITHUB',
-        href: '',
-      },
-      {
-        title: 'SITE',
-        href: '',
-      },
-    ],
-  ],
+  [  {
+    title: 'GITHUB',
+    href: 'https://github.com/ArtisticH/portfolio',
+  },
+  {
+    title: 'SITE',
+    href: '',
+  },
+  ]
 ];
 
 const Left = () => {
@@ -139,17 +77,11 @@ const Left = () => {
         <Types>
           {portfolios.map((pf, i) => (
             <Type key={pf.title} li={pf} arrow={true}>
-              <Versions>
-                {versions[i].map((version, index) => (
-                  <Version key={version.title} li={version} arrow={true}>
-                    <Ways width="ways">
-                      {ways[i][index].map((way) => (
-                        <Way key={way.title} li={way} arrow={false} />
-                      ))}
-                    </Ways>
-                  </Version>
+              <Ways width="ways">
+                {ways[i].map((way, index) => (
+                  <Way key={index} li={way} arrow={false} />
                 ))}
-              </Versions>
+              </Ways>
             </Type>
           ))}
         </Types>

@@ -18,7 +18,7 @@ const File = React.memo(({ info, location }) => {
   const [clicked, setClick] = useState(false);
   const {
     state: { currentFile },
-    actions: { setCurrentFile },
+    actions: { setCurrentFile, setBtn },
   } = useContext(Context);
   const Click = useCallback(() => {
     setCurrentFile(
@@ -34,15 +34,22 @@ const File = React.memo(({ info, location }) => {
       setClick(false);
     }
   }, [currentFile[location]]);
-  const DoubleClick = () => {
+  const DoubleClick = useCallback(() => {
     window.open(info.href, '_blank');
-  };
+  }, [])
+  const Gif = useCallback(() => {
+    setBtn(
+      produce((draft) => {
+        draft.gif[info.href].red.clicked = false;
+      })
+    )
+  }, [])
   // data-file="true"는 빈 공간을 클릭하는 경우 파일이 아님을 구분하기 위해 => <FileBox />의 .main
   return (
     <div
       className={cx('file')}
       onClick={Click}
-      onDoubleClick={DoubleClick}
+      onDoubleClick={info.title === '.gif' ? Gif : DoubleClick}
       ref={This}
       data-file="true"
     >

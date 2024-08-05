@@ -29,3 +29,7 @@
   letter-spacing: -0.3px;
   line-height: 1rem;
 }
+
+.main.yellow {
+  display: none;
+}

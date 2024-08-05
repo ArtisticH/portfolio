@@ -15,7 +15,7 @@ const btns = {
 }
 
 const state = {
-  main: true, // 부팅 화면에서 메인 화면으로 넘어가기
+  main: false, // 부팅 화면에서 메인 화면으로 넘어가기
   modal: false, // 모달 창 클릭과 취소
   music: {
     // 뮤직앱에서 재생/멈춤과 다음/이전노래 등에 사용,
@@ -96,7 +96,7 @@ const Context = createContext({
 });
 
 const Provider = ({ children }) => {
-  const [main, setMain] = useState(true);
+  const [main, setMain] = useState(false);
   const [modal, setModal] = useState(false);
   const [music, setMusic] = useState({
     index: 0,

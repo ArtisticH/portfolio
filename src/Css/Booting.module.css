@@ -6,20 +6,16 @@
   justify-content: center;
 }
 
-/* .booting.none {
-  display: none;
-} */
-
 .apple-box {
   width: 100px;
   margin: 0 auto;
   margin-bottom: 70px;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
-/* .apple-box.visible {
+.apple-box.visible {
   visibility: visible;
-} */
+}
 
 :global .basic-img {
   display: block;
@@ -34,12 +30,12 @@
   /* .bar-fill */
   position: relative;
   overflow: hidden;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
-/* .bar-empty.visible {
+.bar-empty.visible {
   visibility: visible;
-} */
+}
 
 .bar-fill {
   /* .bar-empty */

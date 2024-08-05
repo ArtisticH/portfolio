@@ -19,7 +19,7 @@ const gifs = [
   {
     title: 'Spotify Design',
     location: 'spotify',
-    href: '',
+    href: 'https://artistich.github.io/spotify',
     src: spotifyGif,
   }
 ];
@@ -53,7 +53,7 @@ const files = [
       },
       {
         title: 'Vanilla\n<Site>',
-        href: 'https://artistich.github.io/spotify/',
+        href: 'https://artistich.github.io/spotify',
       },
       {
         title: '.gif',
@@ -71,7 +71,7 @@ const files = [
       },
       {
         title: `React\n<Site>`,
-        href: '',
+        href: 'https://artistich.github.io/portfolio',
       },
     ]
   }

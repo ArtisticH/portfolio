@@ -64,7 +64,7 @@ const ways = [
   },
   {
     title: 'SITE',
-    href: '',
+    href: 'https://artistich.github.io/portfolio/',
   },
   ]
 ];

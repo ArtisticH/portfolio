@@ -81,7 +81,19 @@ const Sticker = () => {
           onClick={clickGreen}
         ></div>
       </div>
-      <div className={cx('main', { yellow })}></div>
+      <div className={cx('main', { yellow })}>
+        안녕하세요, 
+        <br/>
+        저는 사용자 중심의 웹 애플리케이션을 만드는 데 열정을 가진 프론트엔드 개발자 지망생 서한나입니다.
+        <br/>
+        HTML, CSS, JavaScript와 같은 핵심 기술을 익히며 React와 같은 최신 프레임워크를 활용한 프로젝트 경험이 있습니다. 
+        <br/>
+        문제 해결 능력과 창의적인 사고를 바탕으로 효율적이고 매력적인 웹 페이지를 제작하는 것이 목표입니다.
+        <br/> 
+        항상 배우고 성장하며, 팀과 함께 최상의 결과를 도출하는 개발자가 되고자 합니다. 
+        <br/>
+        감사합니다.
+      </div>
     </div>
   );
 };

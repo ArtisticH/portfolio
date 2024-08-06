@@ -41,7 +41,7 @@ const ways = [
   [
     {
       title: 'GITHUB',
-      href: '',
+      href: 'https://github.com/ArtisticH/bookclub',
     },
     {
       title: 'SITE',

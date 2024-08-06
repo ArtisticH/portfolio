@@ -31,7 +31,7 @@ const files = [
     info: [
       {
         title: `React(Redux)\n<Github>`,
-        href: '',
+        href: 'https://github.com/ArtisticH/bookclub',
       },
       {
         title: `React(Redux)\n<Site>`,

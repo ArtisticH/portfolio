@@ -13,7 +13,7 @@ const gifs = [
   {
     title: 'Book Club',
     location: 'bookclub', // CSS에서 사용할 클래스 이름, 전역 변수에서 프로퍼티 이름으로 사용
-    href: 'https://app.cloudtype.io/@seohanna/bookclub:main/bookclub-frontend',
+    href: 'https://web-bookclub-frontend-lzgqjytn6cca1780.sel4.cloudtype.app',
     src: bookclubGif,
   },
   {
@@ -35,7 +35,7 @@ const files = [
       },
       {
         title: `React(Redux)\n<Site>`,
-        href: 'https://app.cloudtype.io/@seohanna/bookclub:main/bookclub-frontend',
+        href: 'https://web-bookclub-frontend-lzgqjytn6cca1780.sel4.cloudtype.app',
       },
       {
         title: '.gif',

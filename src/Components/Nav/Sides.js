@@ -45,7 +45,7 @@ const ways = [
     },
     {
       title: 'SITE',
-      href: 'https://app.cloudtype.io/@seohanna/bookclub:main/bookclub-frontend',
+      href: 'https://web-bookclub-frontend-lzgqjytn6cca1780.sel4.cloudtype.app',
     },  
   ],
   [
